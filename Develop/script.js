@@ -3,7 +3,7 @@
 // in the html.
 $(function () {
   //display current date and time
-  document.getElementById("currentDay").textContent = dayjs()
+  document.getElementById("currentDay").textContent = dayjs();
 
   //generate time blocks 9-5
   function generateTimeBlocks() {
@@ -19,25 +19,35 @@ $(function () {
       } else {
         hour = hour - 12 + "PM";
       }
-    //create block per hour
+      //create block per hour
       var $timeBlock = $("<div>")
-      .attr("id","hour-" + i)
+        .attr("id", "hour-" + i)
+        .addClass("row time-block");
 
       //create and display hour
       var $hourDisplay = $("<div>")
-      .addClass("col-2 col-md-1 hour text-center py-3")
-      .text(hour);
+        .addClass("col-2 col-md-1 hour text-center py-3")
+        .text(hour);
 
       //create area for user input
       var $userInput = $("<textArea>")
-      .addClass("col-8 col-md-10 description")
-      .attr("rows", "3");
+        .addClass("col-8 col-md-10 description")
+        .attr("rows", "3");
 
       //create saveBtn
       var $saveBtn = $("<button>")
-      .addClass("btn saveBtn col-2 col-md-1")
+        .addClass("btn saveBtn col-2 col-md-1")
         .attr("aria-label", "save")
         .html('<i class="fas fa-save" aria-hidden="true"></i>');
 
+      // Append elements
+      $timeBlock.append($hourDisplay, $userInput, $saveBtn);
 
+      // Append the time block to our container
+      $(".container-fluid").append($timeBlock);
+    }
+  }
+
+  
+  generateTimeBlocks();
 });

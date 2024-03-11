@@ -12,7 +12,8 @@ a simple scheduling page to display current hour as red and past hours as gray w
 
 ## How to Use
 
--type in the desired hour text area and click save 
+-type in the desired hour text area and click save
 
-## contributions 
-tutor from bootcamp 
+## contributions
+
+tutor from bootcamp

@@ -4,7 +4,8 @@
 $(function () {
   //display current date and time
   document.getElementById("currentDay").textContent = dayjs();
-
+  //get current hour to set classes
+  var currentHour = dayjs().hour();
   //generate time blocks 9-5
   function generateTimeBlocks() {
     //for hours 9-5pm
@@ -45,6 +46,14 @@ $(function () {
 
       // Append the time block to our container
       $(".container-fluid").append($timeBlock);
+      //once we append add class to userinput area based on currentHour
+      if (i < currentHour) {
+        $userInput.addClass("past");
+      } else if (i === currentHour) {
+        $userInput.addClass("present");
+      } else {
+        $userInput.addClass("future");
+      }
     }
   }
   generateTimeBlocks();
@@ -58,8 +67,7 @@ $(function () {
     localStorage.setItem("hour_" + hour, userInput);
   });
 
-   
-   function displayInput() {
+  function displayInput() {
     // for each hour
     for (var i = 9; i <= 17; i++) {
       // grab input
@@ -71,6 +79,6 @@ $(function () {
       }
     }
   }
-  // Call the function to display saved input when the page loads
+
   displayInput();
 });

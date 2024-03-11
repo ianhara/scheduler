@@ -47,7 +47,30 @@ $(function () {
       $(".container-fluid").append($timeBlock);
     }
   }
-
-  
   generateTimeBlocks();
+
+  $(".saveBtn").on("click", function () {
+    //use second half of id string to set hour
+    var hour = parseInt($(this).parent().attr("id").split("-")[1]);
+    //grab text area content
+    var userInput = $(this).siblings(".description").val();
+
+    localStorage.setItem("hour_" + hour, userInput);
+  });
+
+   
+   function displayInput() {
+    // for each hour
+    for (var i = 9; i <= 17; i++) {
+      // grab input
+      var savedInput = localStorage.getItem("hour_" + i);
+      // if not null or undefined
+      if (savedInput) {
+        // Set the text area
+        $("#hour-" + i + " .description").val(savedInput);
+      }
+    }
+  }
+  // Call the function to display saved input when the page loads
+  displayInput();
 });
